@@ -1,28 +1,122 @@
-let time = 90 * 60; // 90 minutes
+const questions = [
 
-const timer = setInterval(() => {
-  let minutes = Math.floor(time / 60);
-  let seconds = time % 60;
+/* =======================
+   MATHEMATICS (30)
+======================= */
+{ q: "1. 25 × 4 = ?", options: ["90", "100", "110", "120"], answer: 1 },
+{ q: "2. Simplify: 15 + 5 × 2", options: ["40", "25", "30", "35"], answer: 1 },
+{ q: "3. What is 20% of 250?", options: ["40", "45", "50", "60"], answer: 2 },
+{ q: "4. LCM of 6 and 8 is", options: ["12", "24", "48", "18"], answer: 1 },
+{ q: "5. HCF of 24 and 36 is", options: ["6", "12", "18", "24"], answer: 1 },
+{ q: "6. If x + 5 = 12, x = ?", options: ["5", "6", "7", "8"], answer: 2 },
+{ q: "7. 144 ÷ 12 = ?", options: ["10", "11", "12", "13"], answer: 2 },
+{ q: "8. Square root of 169?", options: ["11", "12", "13", "14"], answer: 2 },
+{ q: "9. Value of π (approx)?", options: ["3.12", "3.14", "3.16", "3.18"], answer: 1 },
+{ q: "10. Perimeter of square of side 4 cm?", options: ["12", "14", "16", "18"], answer: 2 },
 
-  document.getElementById("timer").innerText =
-    `Time Left: ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+{ q: "11. Simple interest on ₹1000 at 10% for 1 year?", options: ["₹100", "₹110", "₹120", "₹150"], answer: 0 },
+{ q: "12. 3/4 of 200 = ?", options: ["120", "140", "150", "160"], answer: 3 },
+{ q: "13. 0.25 as fraction?", options: ["1/2", "1/3", "1/4", "1/5"], answer: 2 },
+{ q: "14. Average of 2,4,6,8?", options: ["4", "5", "6", "7"], answer: 1 },
+{ q: "15. 10² = ?", options: ["20", "100", "1000", "10"], answer: 1 },
+{ q: "16. If CP=₹100, SP=₹120, profit %?", options: ["10%", "15%", "20%", "25%"], answer: 2 },
+{ q: "17. 50% of 80?", options: ["30", "35", "40", "45"], answer: 2 },
+{ q: "18. 7 × 9 = ?", options: ["56", "63", "72", "81"], answer: 1 },
+{ q: "19. Cube of 3?", options: ["6", "9", "27", "81"], answer: 2 },
+{ q: "20. 1000 meters = ?", options: ["1 km", "10 km", "100 km", "0.1 km"], answer: 0 },
 
-  time--;
+{ q: "21. If a:b = 2:3, b:a = ?", options: ["2:3", "3:2", "1:2", "2:1"], answer: 1 },
+{ q: "22. 45% of 200?", options: ["80", "85", "90", "95"], answer: 2 },
+{ q: "23. Area of rectangle 5×4?", options: ["20", "18", "16", "25"], answer: 0 },
+{ q: "24. 9² − 5² = ?", options: ["56", "61", "36", "16"], answer: 0 },
+{ q: "25. 1/2 + 1/4 = ?", options: ["3/4", "1/2", "2/3", "1"], answer: 0 },
+{ q: "26. Roman numeral of 50?", options: ["L", "C", "X", "V"], answer: 0 },
+{ q: "27. 360 degrees makes?", options: ["Line", "Triangle", "Circle", "Square"], answer: 2 },
+{ q: "28. Value of 5³?", options: ["25", "75", "125", "150"], answer: 2 },
+{ q: "29. 1 hour = ?", options: ["30 min", "45 min", "60 min", "90 min"], answer: 2 },
+{ q: "30. 20 is what % of 200?", options: ["5%", "10%", "15%", "20%"], answer: 1 },
 
-  if (time < 0) {
-    clearInterval(timer);
-    submitTest();
-  }
-}, 1000);
+/* =======================
+   REASONING (30)
+======================= */
+{ q: "31. Find the odd one out", options: ["Dog", "Cat", "Cow", "Chair"], answer: 3 },
+{ q: "32. A is brother of B, B is sister of C. A is ___ of C.", options: ["Brother", "Sister", "Father", "Cousin"], answer: 0 },
+{ q: "33. Which number comes next: 2,4,8,16,?", options: ["18", "24", "32", "64"], answer: 2 },
+{ q: "34. Find the mirror image of 3", options: ["Ɛ", "Ʒ", "Σ", "Z"], answer: 1 },
+{ q: "35. If MONDAY is coded as LNM CZX?", options: ["Wrong code", "Right code", "No pattern", "None"], answer: 1 },
+{ q: "36. Which word is different?", options: ["Apple", "Banana", "Carrot", "Mango"], answer: 2 },
+{ q: "37. If SOUTH = 5 letters, then EAST = ?", options: ["3", "4", "5", "6"], answer: 1 },
+{ q: "38. Find missing: A,C,E,?", options: ["F", "G", "H", "I"], answer: 1 },
+{ q: "39. Clock angle at 3:00?", options: ["0°", "45°", "90°", "180°"], answer: 2 },
+{ q: "40. Opposite of Tall?", options: ["High", "Long", "Short", "Big"], answer: 2 },
 
-function submitTest() {
-  let score = 0;
+{ q: "41. Blood relation: Son of my father?", options: ["Brother", "Uncle", "Father", "Me"], answer: 3 },
+{ q: "42. Find odd pair", options: ["Pen-Write", "Knife-Cut", "Book-Read", "Chair-Sit"], answer: 3 },
+{ q: "43. Direction: Facing east, turn left. Now facing?", options: ["North", "South", "West", "East"], answer: 0 },
+{ q: "44. Which is different?", options: ["Circle", "Square", "Triangle", "Line"], answer: 3 },
+{ q: "45. Series: 1,4,9,16,?", options: ["20", "25", "30", "36"], answer: 1 },
+{ q: "46. Day after Sunday?", options: ["Friday", "Saturday", "Monday", "Tuesday"], answer: 2 },
+{ q: "47. If CAT = 3120, BAT = ?", options: ["2120", "2130", "2140", "2150"], answer: 0 },
+{ q: "48. Find missing: 5,10,20,?", options: ["25", "30", "35", "40"], answer: 3 },
+{ q: "49. Odd one out", options: ["Iron", "Gold", "Silver", "Plastic"], answer: 3 },
+{ q: "50. Which comes last alphabetically?", options: ["Apple", "Ball", "Cat", "Dog"], answer: 3 },
 
-  for (let i = 1; i <= 100; i++) {
-    let q = document.querySelector(`input[name="q${i}"]:checked`);
-    if (q) score += Number(q.value);
-  }
+{ q: "51. Find next: Z,Y,X,?", options: ["W", "V", "U", "T"], answer: 0 },
+{ q: "52. Hand is to Arm as Foot is to?", options: ["Toe", "Leg", "Finger", "Knee"], answer: 1 },
+{ q: "53. Which is not a fruit?", options: ["Apple", "Banana", "Potato", "Mango"], answer: 2 },
+{ q: "54. 2:4 :: 3:?", options: ["5", "6", "7", "8"], answer: 1 },
+{ q: "55. Which day comes before Friday?", options: ["Thursday", "Wednesday", "Saturday", "Sunday"], answer: 0 },
+{ q: "56. Find odd number", options: ["2", "4", "6", "9"], answer: 3 },
+{ q: "57. If 1=3, 2=6, 3=9, then 4=?", options: ["10", "12", "14", "16"], answer: 1 },
+{ q: "58. Which is different?", options: ["Rose", "Lotus", "Lily", "Grass"], answer: 3 },
+{ q: "59. Find missing letter: A, D, G, ?", options: ["H", "I", "J", "K"], answer: 2 },
+{ q: "60. Which is smallest?", options: ["1/2", "1/3", "1/4", "1/5"], answer: 3 },
 
-  localStorage.setItem("score", score);
-  window.location.href = "result.html";
-}
+/* =======================
+   GENERAL AWARENESS (40)
+======================= */
+{ q: "61. Capital of India?", options: ["Mumbai", "Delhi", "Chennai", "Kolkata"], answer: 1 },
+{ q: "62. National animal of India?", options: ["Lion", "Elephant", "Tiger", "Leopard"], answer: 2 },
+{ q: "63. Who wrote the Indian National Anthem?", options: ["Tagore", "Gandhi", "Nehru", "Tilak"], answer: 0 },
+{ q: "64. Currency of Japan?", options: ["Won", "Yuan", "Yen", "Dollar"], answer: 2 },
+{ q: "65. First President of India?", options: ["Rajendra Prasad", "Nehru", "Gandhi", "Patel"], answer: 0 },
+{ q: "66. Largest planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: 2 },
+{ q: "67. Taj Mahal is in?", options: ["Delhi", "Agra", "Jaipur", "Lucknow"], answer: 1 },
+{ q: "68. National flower of India?", options: ["Rose", "Lotus", "Sunflower", "Lily"], answer: 1 },
+{ q: "69. Who invented telephone?", options: ["Edison", "Bell", "Newton", "Tesla"], answer: 1 },
+{ q: "70. Independence Day of India?", options: ["15 Aug", "26 Jan", "2 Oct", "14 Nov"], answer: 0 },
+
+{ q: "71. Largest ocean?", options: ["Atlantic", "Indian", "Arctic", "Pacific"], answer: 3 },
+{ q: "72. Father of Indian Constitution?", options: ["Nehru", "Gandhi", "Ambedkar", "Patel"], answer: 2 },
+{ q: "73. Which gas we breathe in?", options: ["Oxygen", "Carbon", "Hydrogen", "Nitrogen"], answer: 0 },
+{ q: "74. Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: 1 },
+{ q: "75. RBI was established in?", options: ["1935", "1947", "1950", "1920"], answer: 0 },
+{ q: "76. National bird of India?", options: ["Sparrow", "Crow", "Peacock", "Eagle"], answer: 2 },
+{ q: "77. Smallest prime number?", options: ["0", "1", "2", "3"], answer: 2 },
+{ q: "78. Who discovered gravity?", options: ["Einstein", "Newton", "Galileo", "Tesla"], answer: 1 },
+{ q: "79. Chemical symbol of Gold?", options: ["Ag", "Au", "Gd", "Go"], answer: 1 },
+{ q: "80. First Prime Minister of India?", options: ["Nehru", "Patel", "Gandhi", "Rajaji"], answer: 0 },
+
+{ q: "81. Largest desert?", options: ["Sahara", "Gobi", "Kalahari", "Thar"], answer: 0 },
+{ q: "82. Which organ pumps blood?", options: ["Lungs", "Brain", "Heart", "Kidney"], answer: 2 },
+{ q: "83. Which vitamin from sunlight?", options: ["A", "B", "C", "D"], answer: 3 },
+{ q: "84. How many states in India?", options: ["27", "28", "29", "30"], answer: 1 },
+{ q: "85. National tree of India?", options: ["Neem", "Banyan", "Peepal", "Mango"], answer: 1 },
+{ q: "86. Which is not a metal?", options: ["Iron", "Copper", "Plastic", "Silver"], answer: 2 },
+{ q: "87. Who is known as Iron Man of India?", options: ["Nehru", "Gandhi", "Patel", "Bose"], answer: 2 },
+{ q: "88. Which continent is India in?", options: ["Europe", "Africa", "Asia", "Australia"], answer: 2 },
+{ q: "89. Which is the longest river in India?", options: ["Yamuna", "Ganga", "Godavari", "Narmada"], answer: 1 },
+{ q: "90. National sport of India?", options: ["Cricket", "Hockey", "Football", "Kabaddi"], answer: 1 },
+
+{ q: "91. Who invented computer?", options: ["Charles Babbage", "Bill Gates", "Jobs", "Turing"], answer: 0 },
+{ q: "92. How many days in leap year?", options: ["365", "366", "364", "360"], answer: 1 },
+{ q: "93. Which planet has rings?", options: ["Earth", "Mars", "Saturn", "Venus"], answer: 2 },
+{ q: "94. Which gas causes global warming?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Helium"], answer: 2 },
+{ q: "95. Which metal is liquid?", options: ["Iron", "Mercury", "Silver", "Copper"], answer: 1 },
+{ q: "96. Who wrote Ramayana?", options: ["Valmiki", "Tulsidas", "Ved Vyasa", "Kalidasa"], answer: 0 },
+{ q: "97. Which is smallest continent?", options: ["Asia", "Africa", "Europe", "Australia"], answer: 3 },
+{ q: "98. Which festival is called festival of lights?", options: ["Holi", "Diwali", "Eid", "Christmas"], answer: 1 },
+{ q: "99. Currency of India?", options: ["Dollar", "Euro", "Rupee", "Pound"], answer: 2 },
+{ q: "100. Who is head of Indian government?", options: ["President", "Prime Minister", "Governor", "Chief Justice"], answer: 1 }
+
+];
