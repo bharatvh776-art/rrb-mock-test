@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>RRB Mock Test Result</h1>
+  <h2 id="score"></h2>
+
+  <script>
+    document.getElementById("score").innerText =
+      "Your Score: " + localStorage.getItem("score") + " / 100";
+  </script>
+</body>
+</html>
